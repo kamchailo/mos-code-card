@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#111827" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Morse Card" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Morse Code Card</title>
+</head>
+<body>
+  <main class="app">
+    <header class="display" aria-label="Decoded message">
+      <div class="message-row">
+        <span id="message" class="message" aria-live="polite"></span><span id="current" class="current" aria-live="polite"></span><span class="caret" aria-hidden="true"></span>
+      </div>
+      <div class="hint">tap = dot &nbsp;·&nbsp; hold = dash &nbsp;·&nbsp; pause to commit letter</div>
+    </header>
+
+    <section class="chart" id="chart" aria-label="Morse code chart"></section>
+
+    <footer class="controls">
+      <button id="clearBtn" class="small-btn" type="button" aria-label="Clear message">Clear</button>
+      <button id="key" class="key" type="button" aria-label="Morse key: tap for dot, hold for dash">
+        <span class="key-inner">
+          <span class="key-label">TAP / HOLD</span>
+        </span>
+      </button>
+      <button id="spaceBtn" class="small-btn" type="button" aria-label="Insert space">Space</button>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js').catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
